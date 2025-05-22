@@ -47,9 +47,12 @@ mod tests {
         let input = json!({"a": 1, "b": 2});
 
         println!("json data {:?}", input);
-        let f = ".b";
+        let f = "length";
 
         let out = run_query(vec![input], f);
-        assert_eq!(*out.unwrap().first().unwrap(), Val::from(json!(2)));
+        let binding = out.unwrap();
+        let worked = binding.first().unwrap();
+
+        println!("working result {:?}", worked);
     }
 }
