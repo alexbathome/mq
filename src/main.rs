@@ -24,11 +24,10 @@ fn main() -> Result<()> {
 
 /// Run the CLI application logic: read objects, apply filter, and print results
 pub fn run(cli: crate::cli::Cli) -> Result<()> {
-    let objects: Vec<Value> = crate::repository::read_json_objects(&cli.repo)?;
-    let filtered = crate::filter::run_query(objects, &cli.filter)?;
-    for v in filtered {
-        let vv: Value = Val::into(v);
-        println!("{}", serde_json::to_string_pretty(&vv)?);
+    let queried: Vec<Value> =
+        crate::repository::read_json_objects_with_query(&cli.repo, &cli.filter)?;
+    for v in queried {
+        println!("{}", serde_json::to_string_pretty(&v)?);
     }
     Ok(())
 }

@@ -37,7 +37,6 @@ pub fn run_query(input: Vec<Value>, filter_code: &str) -> Result<Vec<Val>> {
 
 #[cfg(test)]
 mod tests {
-    use jaq_json::Val;
     use serde_json::json;
 
     use super::run_query;
